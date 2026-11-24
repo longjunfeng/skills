@@ -1,0 +1,20 @@
+#!/bin/sh
+set -eu
+
+SCRIPT_DIR=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd)
+
+if [ -n "${PLAN_PYTHON:-}" ] && [ -x "$PLAN_PYTHON" ] && "$PLAN_PYTHON" -c 'import openpyxl' >/dev/null 2>&1; then
+  exec "$PLAN_PYTHON" "$SCRIPT_DIR/plan_cli.py" "$@"
+fi
+
+if command -v python3 >/dev/null 2>&1 && python3 -c 'import openpyxl' >/dev/null 2>&1; then
+  exec python3 "$SCRIPT_DIR/plan_cli.py" "$@"
+fi
+
+CODEX_RUNTIME_PYTHON="${HOME:-}/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/bin/python3"
+if [ -x "$CODEX_RUNTIME_PYTHON" ] && "$CODEX_RUNTIME_PYTHON" -c 'import openpyxl' >/dev/null 2>&1; then
+  exec "$CODEX_RUNTIME_PYTHON" "$SCRIPT_DIR/plan_cli.py" "$@"
+fi
+
+echo "错误：未找到安装了 openpyxl 的 Python。请安装 openpyxl，或在 Codex 桌面环境中运行本工具。" >&2
+exit 1

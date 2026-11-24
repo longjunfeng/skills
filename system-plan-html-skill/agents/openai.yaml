@@ -1,0 +1,4 @@
+interface:
+  display_name: "项目开发计划与进度"
+  short_description: "使用 Excel 管理开发计划、更新进度并生成 HTML 看板"
+  default_prompt: "使用 $system-plan-html-skill 创建项目开发计划、更新任务进度并生成进度看板。"

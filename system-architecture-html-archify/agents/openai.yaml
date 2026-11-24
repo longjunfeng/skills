@@ -1,0 +1,5 @@
+interface:
+  display_name: "系统架构设计 HTML · Archify"
+  short_description: "用 Archify 图册创建可追溯架构设计与 OpenAPI 文档"
+  default_prompt: "使用 $system-architecture-html-archify 创建或修改系统架构设计 HTML，让架构图、流程图和时序图统一由 Archify 生成并完成校验，同时补充 OpenAPI、技术选型、部署运维和追溯关系。"
+

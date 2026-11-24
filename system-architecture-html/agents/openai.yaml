@@ -1,0 +1,4 @@
+interface:
+  display_name: "系统架构设计 HTML"
+  short_description: "创建可读架构图、技术运维与 OpenAPI 设计"
+  default_prompt: "使用 $system-architecture-html 创建或修改系统架构设计 HTML，补充技术选型、部署运维和业务名词表格，并让架构图、Mermaid 与 OpenAPI 页面可交互验收。"

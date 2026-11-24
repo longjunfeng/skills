@@ -1,0 +1,288 @@
+.diagram-surface {
+  position: relative;
+  min-height: 420px;
+  overflow: auto;
+  border: 1px solid color-mix(in srgb, var(--border-color, #cbd5e1) 82%, transparent);
+  border-radius: 18px;
+  background:
+    radial-gradient(circle at 12% 8%, rgba(37, 99, 235, 0.07), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.96));
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.08);
+}
+
+.diagram-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.diagram-toolbar button {
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #334155;
+  cursor: pointer;
+}
+
+.diagram-toolbar button:hover,
+.diagram-toolbar button:focus-visible {
+  border-color: #3b82f6;
+  color: #1d4ed8;
+  outline: 3px solid rgba(59, 130, 246, 0.18);
+  outline-offset: 1px;
+}
+
+.diagram-toolbar button:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.mermaid-diagram {
+  min-width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.mermaid-viewer {
+  display: flex;
+  min-width: 0;
+  min-height: inherit;
+  flex-direction: column;
+  background: inherit;
+}
+
+.mermaid-toolbar {
+  position: relative;
+  z-index: 4;
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.34);
+  background: rgba(248, 250, 252, 0.92);
+  backdrop-filter: blur(10px);
+}
+
+.mermaid-toolbar [data-diagram-action="fullscreen"] {
+  margin-left: auto;
+}
+
+.diagram-zoom-value {
+  min-width: 52px;
+  color: #475569;
+  font-size: 0.84rem;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+.mermaid-viewport {
+  position: relative;
+  min-width: 0;
+  min-height: 360px;
+  flex: 1 1 auto;
+  overflow: hidden;
+  cursor: grab;
+  touch-action: pan-y;
+  user-select: none;
+  overscroll-behavior: contain;
+}
+
+.mermaid-viewport:focus-visible {
+  outline: 3px solid rgba(59, 130, 246, 0.3);
+  outline-offset: -4px;
+}
+
+.mermaid-viewport.is-panning {
+  cursor: grabbing;
+}
+
+.mermaid-stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0;
+  will-change: transform;
+}
+
+.mermaid-diagram svg {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: none;
+  margin: 0;
+  overflow: visible;
+}
+
+.mermaid-diagram .diagram-interactive {
+  cursor: pointer;
+  transition: opacity 160ms ease, filter 160ms ease;
+}
+
+.mermaid-diagram .diagram-interactive:hover,
+.mermaid-diagram .diagram-interactive:focus-visible,
+.mermaid-diagram .diagram-interactive.is-highlighted {
+  filter: drop-shadow(0 7px 10px rgba(37, 99, 235, 0.22));
+  outline: none;
+}
+
+.mermaid-viewer:fullscreen,
+.mermaid-viewer.is-pseudo-fullscreen {
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  border-radius: 0;
+  background: #f8fafc;
+}
+
+.mermaid-viewer.is-pseudo-fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+}
+
+.mermaid-viewer:fullscreen .mermaid-viewport,
+.mermaid-viewer.is-pseudo-fullscreen .mermaid-viewport {
+  min-height: 0;
+  touch-action: none;
+}
+
+.mermaid-viewer:fullscreen .mermaid-toolbar,
+.mermaid-viewer.is-pseudo-fullscreen .mermaid-toolbar {
+  padding-right: max(16px, env(safe-area-inset-right));
+  padding-left: max(16px, env(safe-area-inset-left));
+}
+
+html.diagram-fullscreen-open {
+  overflow: hidden;
+}
+
+.mermaid-diagram g.edgePath.diagram-interactive path,
+.mermaid-diagram path.flowchart-link.diagram-interactive,
+.mermaid-diagram .messageLine0.diagram-interactive,
+.mermaid-diagram .messageLine1.diagram-interactive {
+  opacity: 0.38;
+  stroke-width: 1px !important;
+  transition: opacity 160ms ease, stroke-width 160ms ease, stroke 160ms ease;
+}
+
+.mermaid-diagram g.edgePath.diagram-interactive:hover path,
+.mermaid-diagram g.edgePath.diagram-interactive:focus-visible path,
+.mermaid-diagram g.edgePath.diagram-interactive.is-highlighted path,
+.mermaid-diagram path.flowchart-link.diagram-interactive:hover,
+.mermaid-diagram path.flowchart-link.diagram-interactive:focus-visible,
+.mermaid-diagram path.flowchart-link.diagram-interactive.is-highlighted,
+.mermaid-diagram .messageLine0.diagram-interactive:hover,
+.mermaid-diagram .messageLine1.diagram-interactive:hover,
+.mermaid-diagram .messageLine0.diagram-interactive:focus-visible,
+.mermaid-diagram .messageLine1.diagram-interactive:focus-visible,
+.mermaid-diagram .messageLine0.diagram-interactive.is-highlighted,
+.mermaid-diagram .messageLine1.diagram-interactive.is-highlighted {
+  opacity: 1;
+  stroke: #2563eb !important;
+  stroke-width: 2.25px !important;
+}
+
+.cytoscape-architecture {
+  width: 100%;
+  height: clamp(640px, 74vh, 920px);
+  min-height: 640px;
+}
+
+.architecture-keyboard-list {
+  margin-top: 12px;
+  overflow: hidden;
+  border: 1px solid #d8e1ec;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.88);
+}
+
+.architecture-keyboard-list > summary {
+  padding: 11px 14px;
+  color: #475569;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.architecture-keyboard-list[open] > summary {
+  border-bottom: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.architecture-keyboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+  max-height: 320px;
+  padding: 10px;
+  overflow: auto;
+}
+
+.architecture-keyboard-item {
+  overflow: hidden;
+  min-height: 38px;
+  padding: 8px 10px;
+  border: 1px solid #d8e1ec;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #475569;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.architecture-keyboard-item:hover,
+.architecture-keyboard-item:focus-visible {
+  border-color: #3b82f6;
+  color: #1d4ed8;
+  outline: 3px solid rgba(59, 130, 246, 0.16);
+  outline-offset: 1px;
+}
+
+@media (max-width: 720px) {
+  .diagram-surface {
+    min-height: 360px;
+    border-radius: 14px;
+  }
+
+  .mermaid-diagram {
+    padding: 0;
+  }
+
+  .mermaid-toolbar {
+    gap: 6px;
+    padding: 8px;
+  }
+
+  .mermaid-toolbar button {
+    min-height: 34px;
+    padding: 0 9px;
+  }
+
+  .mermaid-viewport {
+    min-height: 320px;
+  }
+
+  .cytoscape-architecture {
+    height: 540px;
+    min-height: 480px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mermaid-diagram .diagram-interactive,
+  .mermaid-diagram g.edgePath.diagram-interactive path,
+  .mermaid-diagram path.flowchart-link.diagram-interactive,
+  .mermaid-diagram .messageLine0.diagram-interactive,
+  .mermaid-diagram .messageLine1.diagram-interactive {
+    transition: none;
+  }
+
+  .mermaid-stage {
+    scroll-behavior: auto;
+  }
+}

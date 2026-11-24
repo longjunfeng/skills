@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>项目开发计划和进度</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要内容</a>
+  <header class="app-header">
+    <div class="header-inner">
+      <div>
+        <p class="eyebrow">PROJECT DELIVERY CONTROL</p>
+        <h1 id="page-title">项目开发计划和进度</h1>
+        <p class="header-summary" id="project-summary">正在读取项目数据…</p>
+      </div>
+      <div class="header-meta" aria-label="数据元信息">
+        <span id="project-health" class="status-badge">未加载</span>
+        <span id="data-updated">更新时间：—</span>
+        <span id="source-file">数据源：—</span>
+      </div>
+    </div>
+  </header>
+
+  <nav class="section-nav" aria-label="页面区域">
+    <div class="section-nav-inner">
+      <a href="#overview">总览</a>
+      <a href="#phases">阶段</a>
+      <a href="#timeline">时间线</a>
+      <a href="#milestones">里程碑</a>
+      <a href="#issues">风险问题</a>
+      <a href="#updates">最近动态</a>
+      <a href="#tasks">任务明细</a>
+    </div>
+  </nav>
+
+  <main id="main-content" class="page-shell">
+    <section id="overview" aria-labelledby="overview-title">
+      <div class="section-heading">
+        <div><p class="section-kicker">OVERVIEW</p><h2 id="overview-title">项目总览</h2></div>
+        <p id="plan-period" class="section-note">计划周期：—</p>
+      </div>
+      <div id="kpi-grid" class="kpi-grid"></div>
+    </section>
+
+    <div class="two-column-layout">
+      <section id="phases" class="panel" aria-labelledby="phases-title">
+        <div class="panel-heading"><div><p class="section-kicker">PHASES</p><h2 id="phases-title">阶段进度</h2></div></div>
+        <div id="phase-list" class="phase-list"></div>
+      </section>
+      <section class="panel" aria-labelledby="health-title">
+        <div class="panel-heading"><div><p class="section-kicker">HEALTH</p><h2 id="health-title">交付健康度</h2></div></div>
+        <div id="health-breakdown" class="health-breakdown"></div>
+      </section>
+    </div>
+
+    <section id="timeline" class="panel full-panel" aria-labelledby="timeline-title">
+      <div class="panel-heading">
+        <div><p class="section-kicker">TIMELINE</p><h2 id="timeline-title">计划时间线</h2></div>
+        <div class="legend" aria-label="时间线图例"><span><i class="legend-plan"></i>计划</span><span><i class="legend-forecast"></i>预测/实际</span></div>
+      </div>
+      <div id="timeline-content" class="timeline-scroll"></div>
+    </section>
+
+    <div class="two-column-layout">
+      <section id="milestones" class="panel" aria-labelledby="milestones-title">
+        <div class="panel-heading"><div><p class="section-kicker">MILESTONES</p><h2 id="milestones-title">里程碑</h2></div></div>
+        <div id="milestone-list" class="milestone-list"></div>
+      </section>
+      <section id="issues" class="panel" aria-labelledby="issues-title">
+        <div class="panel-heading"><div><p class="section-kicker">RISKS & ISSUES</p><h2 id="issues-title">风险与问题</h2></div></div>
+        <div id="issue-list" class="issue-list"></div>
+      </section>
+    </div>
+
+    <section id="updates" class="panel full-panel" aria-labelledby="updates-title">
+      <div class="panel-heading"><div><p class="section-kicker">ACTIVITY</p><h2 id="updates-title">最近动态</h2></div></div>
+      <div id="update-list" class="update-list"></div>
+    </section>
+
+    <section id="tasks" class="panel full-panel" aria-labelledby="tasks-title">
+      <div class="panel-heading"><div><p class="section-kicker">WORK BREAKDOWN</p><h2 id="tasks-title">任务明细</h2></div><span id="task-count" class="count-label"></span></div>
+      <div class="filter-bar" role="search">
+        <label class="search-field"><span class="sr-only">搜索任务</span><input id="task-search" type="search" placeholder="搜索任务、负责人、交付物…"></label>
+        <label><span>状态</span><select id="status-filter"><option value="">全部状态</option></select></label>
+        <label><span>负责人</span><select id="owner-filter"><option value="">全部负责人</option></select></label>
+        <label><span>阶段</span><select id="phase-filter"><option value="">全部阶段</option></select></label>
+        <button id="reset-filters" class="button-secondary" type="button">重置</button>
+      </div>
+      <div class="table-scroll">
+        <table class="task-table">
+          <thead><tr>
+            <th><button data-sort="wbs_code" type="button">WBS</button></th>
+            <th><button data-sort="task_name" type="button">任务</button></th>
+            <th><button data-sort="phase" type="button">阶段</button></th>
+            <th><button data-sort="owner" type="button">负责人</button></th>
+            <th><button data-sort="planned_end" type="button">计划结束</button></th>
+            <th><button data-sort="percent_complete" type="button">完成度</button></th>
+            <th><button data-sort="task_status" type="button">状态</button></th>
+            <th><button data-sort="health" type="button">健康度</button></th>
+          </tr></thead>
+          <tbody id="task-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <div id="drawer-backdrop" class="drawer-backdrop" hidden></div>
+  <aside id="detail-drawer" class="detail-drawer" aria-labelledby="drawer-title" aria-hidden="true">
+    <div class="drawer-header"><div><p id="drawer-kicker" class="section-kicker">DETAIL</p><h2 id="drawer-title">详情</h2></div><button id="drawer-close" class="icon-button" type="button" aria-label="关闭详情">×</button></div>
+    <div id="drawer-content" class="drawer-content"></div>
+  </aside>
+
+  <script src="plan-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
